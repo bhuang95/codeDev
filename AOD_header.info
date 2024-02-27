@@ -1,0 +1,60 @@
+netcdf AOD {
+dimensions:
+	Channel = 1 ;
+	Location = 764 ;
+variables:
+	int Channel(Channel) ;
+	int Location(Location) ;
+
+// global attributes:
+		:_ioda_layout = "ObsGroup" ;
+		:_ioda_layout_version = 0 ;
+		:observation_type = "Aod" ;
+		:date_time = 2020070100 ;
+		:satellite = "NPP" ;
+		:sensor = "v.viirs-m_npp" ;
+		:retrieval_type = "NESDIS Enterprise AOD" ;
+
+group: MetaData {
+  variables:
+  	int64 dateTime(Location) ;
+  		dateTime:units = "seconds since 2020-07-01T00:00:00Z" ;
+  		dateTime:_FillValue = -9999LL ;
+  	float latitude(Location) ;
+  		latitude:units = "degrees_north" ;
+  		latitude:_FillValue = -9999.f ;
+  	float longitude(Location) ;
+  		longitude:units = "degrees_east" ;
+  		longitude:_FillValue = -9999.f ;
+  	float sensorCentralFrequency(Channel) ;
+  		sensorCentralFrequency:units = "Hz" ;
+  		sensorCentralFrequency:_FillValue = -9999.f ;
+  	float sensorCentralWavelength(Channel) ;
+  		sensorCentralWavelength:units = "microns" ;
+  		sensorCentralWavelength:_FillValue = -9999.f ;
+  	int sensorChannelNumber(Channel) ;
+  		sensorChannelNumber:units = "" ;
+  		sensorChannelNumber:_FillValue = -9999 ;
+  } // group MetaData
+
+group: ObsError {
+  variables:
+  	float aerosolOpticalDepth(Location, Channel) ;
+  		aerosolOpticalDepth:units = "1" ;
+  		aerosolOpticalDepth:_FillValue = -9999.f ;
+  } // group ObsError
+
+group: ObsValue {
+  variables:
+  	float aerosolOpticalDepth(Location, Channel) ;
+  		aerosolOpticalDepth:units = "1" ;
+  		aerosolOpticalDepth:_FillValue = -9999.f ;
+  } // group ObsValue
+
+group: PreQC {
+  variables:
+  	int aerosolOpticalDepth(Location, Channel) ;
+  		aerosolOpticalDepth:units = "" ;
+  		aerosolOpticalDepth:_FillValue = -9999 ;
+  } // group PreQC
+}
